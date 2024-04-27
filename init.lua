@@ -1,4 +1,3 @@
-
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
@@ -39,20 +38,20 @@ vim.schedule(function()
   require "mappings"
 end)
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-  vim.o.shell = 'pwsh'
-  vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
-  vim.o.shellquote = ''
-  vim.o.shellxquote = ''
+if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
+  vim.o.shell = "pwsh"
+  vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.o.shellquote = ""
+  vim.o.shellxquote = ""
 
   -- if we are using pwsh, start immediately float term to minimize downtime
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
   -- immediately toggle it closed
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
   -- switch back to normal mode
-  vim.cmd("stopinsert")
+  vim.cmd "stopinsert"
 else
-  vim.o.shell = '/bin/zsh'
+  vim.o.shell = "/bin/zsh"
 end
 
-vim.lsp.set_log_level("trace")
+vim.lsp.set_log_level "trace"
