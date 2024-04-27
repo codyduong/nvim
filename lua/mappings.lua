@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local conform = require("conform")
 local lint = require("lint")
@@ -6,29 +6,25 @@ local lint = require("lint")
 local set = vim.keymap.set
 
 set({ "n", "v" }, "<leader>cf", function()
-    conform.format({
-      lsp_fallback = true,
-      async = false,
-      timeout_ms = 500
-    })
-  end,
-  { desc = "Format file or range (in visual mode)" }
-)
+	conform.format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 500,
+	})
+end, { desc = "Format file or range (in visual mode)" })
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-  group = lint_augroup,
-  callback = function()
-    lint.try_lint()
-  end,
+	group = lint_augroup,
+	callback = function()
+		lint.try_lint()
+	end,
 })
 
 set("n", "<leader>cl", function()
-    lint.try_lint()
-  end,
-  { desc = "Lint toggle" }
-)
+	lint.try_lint()
+end, { desc = "Lint toggle" })
 
 -- vim.api.nvim_create_autocmd({
 --     group = vim.api.nvim_create_augroup('UserLspConfig', {}),

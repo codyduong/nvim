@@ -37,7 +37,7 @@ jobs:
       - name: Check Lua files formatting
         run: |
           ./stylua --check .
-        continue-on-error: true # Set this to false if you want the workflow to fail when formatting issues are found
+        continue-on-error: false
 
       - name: Report formatting errors (optional)
         if: failure()
