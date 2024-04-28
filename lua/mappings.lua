@@ -1,7 +1,4 @@
 require "nvchad.mappings"
-
-local conform = require "conform"
-local lint = require "lint"
 local format = require "utils.format"
 
 local set = vim.keymap.set
@@ -10,12 +7,13 @@ set({ "n", "v" }, "<leader>cf", format.base, { desc = "Format file or range (in 
 
 local lint_augroup = vim.api.nvim_create_augroup("CQD", { clear = false })
 
--- webdev
+-- delete stupid ass handler
+format.clear_specific_autocmds("Conform", { "BufWritePre", "BufWritePost" })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = lint_augroup,
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+  -- pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
   -- format with conform, then lint with nvim-lint
-  callback = require("utils.format").base,
+  callback = format.base,
 })
 
 -- default save
