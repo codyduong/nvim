@@ -24,6 +24,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
+    dependencies = { "williamboman/mason.nvim" },
     opts = function()
       return require "configs.mason-lspconfig"
     end,
@@ -35,6 +36,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = false,
+    dependencies = { "williamboman/mason.nvim" },
     event = "BufReadPre",
     cmd = {
       "MasonToolsInstall",
@@ -48,6 +50,17 @@ return {
     end,
     config = function(_, opts)
       require("mason-tool-installer").setup(opts)
+    end,
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = function()
+      return require "configs.typescript-tools"
+    end,
+    config = function(_, opts)
+      require("typescript-tools").setup(opts)
     end,
   },
 
@@ -77,7 +90,10 @@ return {
       return require "configs.conform"
     end,
     config = function(_, opts)
-      require("conform").setup(opts)
+      local conform = require "conform"
+
+      conform.setup(opts)
+      conform.formatters.stylua = opts.stylua_override
     end,
   },
 

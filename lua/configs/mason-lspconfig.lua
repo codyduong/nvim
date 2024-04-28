@@ -64,12 +64,7 @@ local options = {
     function(server_name) -- default handler (optional)
       -- print("Setting up " .. server_name)
       require("lspconfig")[server_name].setup {
-        on_attach = function(client, bufnr)
-          -- stylua will do formatting
-          client.resolved_capabilities.document_formatting = false
-          client.resolved_capabilities.document_range_formatting = false
-          on_attach(client, bufnr)
-        end,
+        on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,
       }
@@ -91,13 +86,11 @@ local options = {
             diagnostics = {
               globals = { "vim", "wezterm" },
             },
-            format = {
-              enable = true,
-              defaultConfig = {
-                indent_style = "space", --align with typical stylua behavior
-                indent_size = "2",
-              },
-            },
+          },
+          format = {
+            enable = true,
+            indent_style = "space",
+            indent_size = 2,
           },
           workspace = {
             library = {

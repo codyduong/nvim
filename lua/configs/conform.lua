@@ -1,12 +1,3 @@
-local function get_stylua_command()
-  local current_dir = vim.fn.getcwd()
-  local stylua_path = vim.fn.exepath "stylua" -- Ensure the executable path is resolved
-  local config_path = current_dir .. "/.stylua.toml" -- Construct path to the config
-  local to_return = stylua_path .. " --search-parent-directories --config-path " .. config_path .. " -"
-  -- print(to_return)
-  return to_return
-end
-
 local config = {
   formatters_by_ft = {
     lua = { "stylua" },
@@ -33,12 +24,12 @@ local config = {
     -- psm1 = { "psscriptanalyzer" },
   },
   format_on_save = {
-    lsp_fallback = false,
+    lsp_fallback = true,
     async = true,
     timeout_ms = 500,
   },
   format_after_save = {
-    lsp_fallback = false,
+    lsp_fallback = true,
   },
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
