@@ -23,6 +23,7 @@ local options = {
     "cssmodules_ls",
     -- "scss",
     -- "phpactor", -- unsupported platform (windows)
+    "eslint", -- this is the eslint-lsp for the linter
 
     "prismals",
     "graphql",
@@ -121,6 +122,10 @@ local options = {
         root_dir = function()
           return vim.fn.getcwd()
         end,
+        on_attach = on_attach,
+        on_init = on_init,
+        capabilities = capabilities,
+
         -- https://github.com/neovim/nvim-lspconfig/issues/2747
         bundle_path = vim.fn.stdpath "data" .. "/mason/packages/powershell-editor-services",
         cmd = { "pwsh", "-NoLogo", "-Command", command },
@@ -130,6 +135,16 @@ local options = {
           enableProfileLoading = false,
         },
       }
+    end,
+    -- ["eslint"] = function()
+    -- 	require("lspconfig")["eslint"].setup({
+    -- 		on_attach = function(server, bufnr)
+    -- 			on_attach(server, bufnr)
+    -- 		end,
+    -- 	})
+    -- end,
+    ["tsserver"] = function()
+      -- use typescript-tools instead
     end,
   },
 }

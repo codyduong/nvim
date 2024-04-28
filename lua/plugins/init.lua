@@ -62,6 +62,7 @@ return {
     config = function(_, opts)
       require("typescript-tools").setup(opts)
     end,
+    ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   },
 
   {
@@ -71,7 +72,7 @@ return {
       "BufNewFile",
     },
     opts = function()
-      return require "configs.nvm-lint"
+      return require "configs.nvim-lint"
     end,
     config = function(_, opts)
       local lint = require "lint"
@@ -93,7 +94,6 @@ return {
       local conform = require "conform"
 
       conform.setup(opts)
-      conform.formatters.stylua = opts.stylua_override
     end,
   },
 

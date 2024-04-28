@@ -23,14 +23,26 @@ local config = {
     -- psd1 = { "psscriptanalyzer" },
     -- psm1 = { "psscriptanalyzer" },
   },
-  format_on_save = {
-    lsp_fallback = true,
-    async = true,
-    timeout_ms = 500,
-  },
-  format_after_save = {
-    lsp_fallback = true,
-  },
+  -- format_on_save = {
+  -- 	lsp_fallback = true,
+  -- 	async = false,
+  -- 	timeout_ms = 500,
+  -- 	callback = function()
+  -- 		require("lint").try_lint()
+  -- 		-- ^^ try_lint is synchronous, so finally use lsp
+  -- 		if vim.lsp.buf.server_capabilities.documentFormattingProvider then
+  -- 			vim.lsp.buf.format({
+  -- 				async = false,
+  -- 			})
+  -- 		end
+  -- 		vim.cmd("e!")
+  -- 		vim.cmd("EslintFixAll")
+  -- 		print("we did it")
+  -- 	end,
+  -- },
+  -- format_after_save = {
+  --   lsp_fallback = true,
+  -- },
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
 

@@ -2,29 +2,44 @@ require "nvchad.mappings"
 
 local conform = require "conform"
 local lint = require "lint"
+local format = require "utils.format"
 
 local set = vim.keymap.set
 
-set({ "n", "v" }, "<leader>cf", function()
-  conform.format {
-    lsp_fallback = true,
-    async = false,
-    timeout_ms = 500,
-  }
-end, { desc = "Format file or range (in visual mode)" })
+set({ "n", "v" }, "<leader>cf", format.base, { desc = "Format file or range (in visual mode)" })
 
-local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+local lint_augroup = vim.api.nvim_create_augroup("CQD", { clear = false })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+-- webdev
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = lint_augroup,
-  callback = function()
-    lint.try_lint()
-  end,
+  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+  -- format with conform, then lint with nvim-lint
+  callback = require("utils.format").base,
 })
 
-set("n", "<leader>cl", function()
-  lint.try_lint()
-end, { desc = "Lint toggle" })
+-- default save
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+-- 	group = lint_augroup,
+--
+-- 	-- format with conform, then lint with nvim-lint
+-- 	callback = function(args)
+-- 		require("conform").format({
+-- 			bufnr = args.buf,
+-- 			callback = function()
+-- 				lint.try_lint()
+-- 				-- ^^ try_lint is synchronous, so finally use lsp
+-- 				if vim.lsp.buf.server_capabilities.documentFormattingProvider then
+-- 					vim.lsp.buf.format({ async = true })
+-- 				end
+-- 			end,
+-- 		})
+-- 	end,
+-- })
+
+-- set("n", "<leader>cl", function()
+-- 	lint.try_lint()
+-- end, { desc = "Lint file" })
 
 -- vim.api.nvim_create_autocmd({
 --     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
