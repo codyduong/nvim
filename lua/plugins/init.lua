@@ -134,6 +134,9 @@ return {
       dofile(vim.g.base46_cache .. "syntax")
       dofile(vim.g.base46_cache .. "treesitter")
       require("nvim-treesitter.configs").setup(opts)
+      local styled = require "utils.styled"
+      styled.directives()
+      styled.queries()
     end,
   },
 }
