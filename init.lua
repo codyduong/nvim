@@ -55,3 +55,6 @@ else
 end
 
 vim.lsp.set_log_level "trace"
+
+-- for wezterm
+require "codyduong.wezterm"

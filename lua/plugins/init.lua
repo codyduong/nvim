@@ -94,6 +94,8 @@ return {
       local conform = require "conform"
 
       conform.setup(opts)
+
+      require("codyduong.utils").clear_specific_autocmds("Conform", { "BufWritePre", "BufWritePost" })
     end,
   },
 
@@ -134,9 +136,24 @@ return {
       dofile(vim.g.base46_cache .. "syntax")
       dofile(vim.g.base46_cache .. "treesitter")
       require("nvim-treesitter.configs").setup(opts)
-      local styled = require "utils.styled"
+      local styled = require "codyduong.styled"
       styled.directives()
       styled.queries()
+    end,
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    opts = function()
+      return require "configs.nvim-notify"
+    end,
+    config = function(_, opts)
+      local notify = require "notify"
+
+      notify.setup(opts)
+
+      vim.notify = notify
     end,
   },
 }

@@ -1,18 +1,5 @@
 local M = {}
 
-M.clear_specific_autocmds = function(group_name, events)
-  -- Fetch all autocommands in the specified group
-  local autocmds = vim.api.nvim_get_autocmds { group = group_name }
-
-  -- Iterate through each autocommand and clear specific events
-  for _, autocmd in pairs(autocmds) do
-    if vim.tbl_contains(events, autocmd.event) then
-      -- Clear this specific autocommand
-      vim.api.nvim_del_autocmd(autocmd.id)
-    end
-  end
-end
-
 local util = require "lspconfig.util"
 local lsp = vim.lsp
 -- https://github.com/neovim/nvim-lspconfig/blob/7133e85c3df14a387da8942c094c7edddcdef309/lua/lspconfig/server_configurations/eslint.lua
@@ -71,7 +58,7 @@ M.base = function(args)
       bufnr = bufnr,
       async = false,
       timeout_ms = 1000,
-    }, function(_err, did_edit)
+    }, function(_, did_edit) -- err, did_edit
       if did_edit then
         vim.cmd "e!"
       end
