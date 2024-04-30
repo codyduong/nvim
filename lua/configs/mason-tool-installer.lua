@@ -1,26 +1,26 @@
 local options = {
-	ensure_installed = {
-		-- linters
-		"eslint_d",
+  ensure_installed = {
+    -- linters
+    "eslint_d",
 
-		"pylint",
+    "pylint",
 
-		-- formatters
-		"stylua",
+    -- formatters
+    "stylua",
 
-		"prettier",
-		"prettierd",
+    "prettier",
+    "prettierd",
 
-		"isort",
-		"black",
+    "isort",
+    "black",
 
-		-- linters & formatters
-		"shellharden",
-		"shfmt",
-	},
+    -- linters & formatters
+    "shellharden",
+    "shfmt",
+  },
 
-	auto_update = false,
-	run_on_start = true,
+  auto_update = false,
+  run_on_start = true,
 }
 
 return options

@@ -55,7 +55,7 @@ local options = {
     -- hardware
     "verilog",
     "arduino",
-    "asm"
+    "asm",
   },
 
   highlight = {
