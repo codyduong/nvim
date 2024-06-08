@@ -44,6 +44,9 @@ if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
 
+  -- custom path resolver for ~ literal
+  vim.env.HOME = os.getenv "USERPROFILE"
+
   -- if we are using pwsh, start immediately float term to minimize downtime
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
   -- immediately toggle it closed
