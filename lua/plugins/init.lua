@@ -156,4 +156,31 @@ return {
       vim.notify = notify
     end,
   },
+
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        -- { path = "wezterm-types", words = {"wezterm"} },
+        { path = "C:\\Users\\duong\\hitokage", words = { "hitokage" } },
+      },
+    },
+  },
+
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    dependencies = {
+      "nvim-telescope/telescope.nvim", -- Only needed if you want to use sesssion lens
+    },
+    config = function()
+      require("auto-session").setup {
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      }
+    end,
+  },
 }
