@@ -51,7 +51,7 @@ local options = {
     "powershell_es",
 
     -- hardware
-    "hdl_checker", -- vhdl
+    -- "hdl_checker", -- vhdl
     "arduino_language_server",
     "asm_lsp",
   },
