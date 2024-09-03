@@ -22,6 +22,7 @@ local config = {
     -- ps1 = { "psscriptanalyzer" },
     -- psd1 = { "psscriptanalyzer" },
     -- psm1 = { "psscriptanalyzer" },
+    rust = { "rustfmt" }
   },
   -- format_on_save = {
   -- 	lsp_fallback = true,
@@ -40,9 +41,9 @@ local config = {
   -- 		print("we did it")
   -- 	end,
   -- },
-  -- format_after_save = {
-  --   lsp_fallback = true,
-  -- },
+  format_after_save = {
+    lsp_fallback = true,
+  },
   log_level = vim.log.levels.ERROR,
   notify_on_error = true,
 

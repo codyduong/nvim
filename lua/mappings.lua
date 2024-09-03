@@ -4,6 +4,8 @@ local format = require "codyduong.format"
 local set = vim.keymap.set
 
 set({ "n", "v" }, "<leader>cf", format.base, { desc = "Format file or range (in visual mode)" })
+-- https://github.com/kaddkaka/vim_examples?tab=readme-ov-file#replace-only-within-selection
+set("x", "s", ":<C-u>s/\\%V", { noremap = true, silent = false, desc = "Search (in visual mode)" })
 
 local lint_augroup = vim.api.nvim_create_augroup("CQD", { clear = false })
 

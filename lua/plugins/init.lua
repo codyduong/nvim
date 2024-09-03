@@ -183,4 +183,16 @@ return {
       }
     end,
   },
+
+  {
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    lazy = false,
+    opts = function()
+      return require "configs.trouble"
+    end,
+    config = function(_, opts)
+      require("trouble").setup(opts)
+    end,
+  },
 }

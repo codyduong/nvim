@@ -11,7 +11,7 @@ local command = command_fmt:format(bundle_path, bundle_path, temp_path, temp_pat
 local options = {
   ensure_installed = {
     "lua_ls",
-    "ast_grep",
+    -- "ast_grep",
 
     "tsserver",
     -- "javascript",
@@ -27,7 +27,7 @@ local options = {
 
     "prismals",
     "graphql",
-    "csharp_ls",
+    -- "csharp_ls",
 
     "pylsp",
     "pyright",
@@ -52,8 +52,8 @@ local options = {
 
     -- hardware
     -- "hdl_checker", -- vhdl
-    "arduino_language_server",
-    "asm_lsp",
+    -- "arduino_language_server",
+    -- "asm_lsp",
   },
 
   automatic_installation = true,
