@@ -50,6 +50,9 @@ local options = {
     "bashls",
     "powershell_es",
 
+    "ruff",
+    "ruff_lsp",
+
     -- hardware
     -- "hdl_checker", -- vhdl
     -- "arduino_language_server",
@@ -146,6 +149,20 @@ local options = {
     ["tsserver"] = function()
       -- use typescript-tools instead
     end,
+    ["rust_analyzer"] = function()
+      require("lspconfig")["rust_analyzer"].setup {
+        on_attach = on_attach,
+        on_init = on_init,
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = true,
+            command = "clippy",
+            features = "all",
+          }
+        }
+      }
+    end
   },
 }
 

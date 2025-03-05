@@ -13,6 +13,16 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
+-- until Mason fixes pyenv loading: https://github.com/williamboman/mason.nvim/issues/1753
+local python_executable, python_dir, error_message
+if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
+  python_executable, python_dir, error_message = require("codyduong.utils").find_highest_pyenv_python()
+  if python_executable then
+    vim.g.python3_host_prog = python_executable
+    vim.env.PATH = python_dir .. ';' .. vim.env.PATH
+  end
+end
+
 -- load plugins
 require("lazy").setup({
   {
@@ -27,6 +37,13 @@ require("lazy").setup({
 
   { import = "plugins" },
 }, lazy_config)
+
+-- after loading we can notify about any earlier errors
+if python_executable then
+  vim.notify("Using Python from: " .. python_executable)
+else
+  vim.notify("Error loading Python from pyenv: " .. error_message, vim.log.levels.ERROR)
+end
 
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
