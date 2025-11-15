@@ -19,7 +19,7 @@ if vim.fn.has "win32" == 1 or vim.fn.has "win64" == 1 then
   python_executable, python_dir, error_message = require("codyduong.utils").find_highest_pyenv_python()
   if python_executable then
     vim.g.python3_host_prog = python_executable
-    vim.env.PATH = python_dir .. ';' .. vim.env.PATH
+    vim.env.PATH = python_dir .. ";" .. vim.env.PATH
   end
 end
 

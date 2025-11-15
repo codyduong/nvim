@@ -22,7 +22,7 @@ local config = {
     -- ps1 = { "psscriptanalyzer" },
     -- psd1 = { "psscriptanalyzer" },
     -- psm1 = { "psscriptanalyzer" },
-    rust = { "rustfmt" }
+    rust = { "rustfmt" },
   },
   -- format_on_save = {
   -- 	lsp_fallback = true,

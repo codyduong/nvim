@@ -22,6 +22,28 @@ return {
   },
 
   {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        version = "^1.0.0",
+      },
+    },
+    cmd = "Telescope",
+    opts = function()
+      return require "configs.telescope"
+    end,
+    config = function(_, opts)
+      local telescope = require "telescope"
+
+      telescope.setup(opts)
+
+      telescope.load_extension "live_grep_args"
+    end,
+  },
+
+  {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     dependencies = { "williamboman/mason.nvim" },

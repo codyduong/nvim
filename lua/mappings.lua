@@ -25,3 +25,6 @@ discipline.cowboy(5)
 -- i use D for delete and Y for yank, so delete should blackhole
 vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true })
 vim.api.nvim_set_keymap("v", "d", '"_d', { noremap = true })
+
+-- telescope find live grep
+vim.api.nvim_set_keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { noremap = true, silent = true })

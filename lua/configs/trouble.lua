@@ -1,5 +1,3 @@
-local options = {
-
-}
+local options = {}
 
 return options

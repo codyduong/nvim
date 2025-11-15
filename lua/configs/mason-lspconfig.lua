@@ -159,10 +159,10 @@ local options = {
             checkOnSave = true,
             command = "clippy",
             features = "all",
-          }
-        }
+          },
+        },
       }
-    end
+    end,
   },
 }
 
